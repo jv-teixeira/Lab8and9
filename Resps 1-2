@@ -1,0 +1,33 @@
+Cloud Computing - Lab 8 and 9
+João Victor Teixeira – D14128420
+
+(1)
+a. It make Curl mute, without showing progress meter or error messages.
+b. It specifies a custom request method to use when communicating with HTTP server.  In this case, the method is GET.
+c. It defines the header which is going to be used when getting a web page.
+d.
+
+(2)	
+a. GET /images 
+[{"tag": "<none>", "id": "fc0ee7de8070", "name": "<none>"}, {"tag": "latest", "id": "3155ce9cde3f", "name": "sshd_image"}, {"tag": "latest", "id": "3155ce9cde3f", "name": "whalesay-build"}, {"tag": "<none>", "id": "5a8b7c8a771b", "name": "<none>"}, {"tag": "latest", "id": "baa3eab042ac", "name": "tagname1"}, {"tag": "latest", "id": "8413e3a00179", "name": "tagd"}, {"tag": "latest", "id": "8413e3a00179", "name": "smalltag"}, {"tag": "latest", "id": "8413e3a00179", "name": "dd"}, {"tag": "latest", "id": "8413e3a00179", "name": "d"}, {"tag": "2.7", "id": "c92b8506d182", "name": "python"}, {"tag": "14.04", "id": "a5a467fddcb8", "name": "ubuntu"}, {"tag": "latest", "id": "fb434121fc77", "name": "docker/whalesay"}]
+
+b. GET /containers
+ [{"ports": "ago", "image": "fc0ee7de8070", "id": "b1124f8ff987", "name": "loving_fermat"}, {"ports": "ago", "image": "a2d53667e34a", "id": "ab05f5c67cc1", "name": "drunk_hypatia"}, {"ports": "ago", "image": "9e2d56d398a9b3d54fd0211fc142c67e0695c58b4d4d013ca85b7a64ea5e0303", "id": "c45969a68bbd", "name": "prickly_yalow"}, {"ports": "ago", "image": "9e2d56d398a9b3d54fd0211fc142c67e0695c58b4d4d013ca85b7a64ea5e0303", "id": "274988462c3b", "name": "mad_noyce"}, {"ports": "ago", "image": "9e2d56d398a9b3d54fd0211fc142c67e0695c58b4d4d013ca85b7a64ea5e0303", "id": "8f318704b882", "name": "pensive_bhaskara"}, {"ports": "ago", "image": "3155ce9cde3f", "id": "887f2b901cb2", "name": "berserk_elion"}, {"ports": "ago", "image": "sshd_image", "id": "3fe7b1b3a019", "name": "focused_kalam"}, {"ports": "ago", "image": "whalesay-build", "id": "b9a0490b101b", "name": "insane_bartik"}, {"ports": "ago", "image": "whalesay-build", "id": "98bc5786cf63", "name": "modest_mayer"}, {"ports": "ago", "image": "whalesay-build", "id": "ed1a23b5b64e", "name": "insane_mestorf"}, {"ports": "ago", "image": "8413e3a00179", "id": "e9ac907f6f60", "name": "ubuntu-ssh2"}, {"ports": "0.0.0.0:8082->22/tcp", "image": "8413e3a00179", "id": "1af419559fd3", "name": "ubuntu-ssh1"}, {"ports": "ago", "image": "8413e3a00179", "id": "29bfc1f33ac1", "name": "furious_hypatia"}]
+
+c. GET /containers?state=running
+ [{"ports": "ago", "image": "fc0ee7de8070", "id": "b1124f8ff987", "name": "loving_fermat"}, {"ports": "ago", "image": "a2d53667e34a", "id": "ab05f5c67cc1", "name": "drunk_hypatia"}, {"ports": "ago", "image": "9e2d56d398a9b3d54fd0211fc142c67e0695c58b4d4d013ca85b7a64ea5e0303", "id": "c45969a68bbd", "name": "prickly_yalow"}, {"ports": "ago", "image": "9e2d56d398a9b3d54fd0211fc142c67e0695c58b4d4d013ca85b7a64ea5e0303", "id": "274988462c3b", "name": "mad_noyce"}, {"ports": "ago", "image": "9e2d56d398a9b3d54fd0211fc142c67e0695c58b4d4d013ca85b7a64ea5e0303", "id": "8f318704b882", "name": "pensive_bhaskara"}, {"ports": "ago", "image": "3155ce9cde3f", "id": "887f2b901cb2", "name": "berserk_elion"}, {"ports": "ago", "image": "sshd_image", "id": "3fe7b1b3a019", "name": "focused_kalam"}, {"ports": "ago", "image": "whalesay-build", "id": "b9a0490b101b", "name": "insane_bartik"}, {"ports": "ago", "image": "whalesay-build", "id": "98bc5786cf63", "name": "modest_mayer"}, {"ports": "ago", "image": "whalesay-build", "id": "ed1a23b5b64e", "name": "insane_mestorf"}, {"ports": "ago", "image": "8413e3a00179", "id": "e9ac907f6f60", "name": "ubuntu-ssh2"}, {"ports": "0.0.0.0:8082->22/tcp", "image": "8413e3a00179", "id": "1af419559fd3", "name": "ubuntu-ssh1"}, {"ports": "ago", "image": "8413e3a00179", "id": "29bfc1f33ac1", "name": "furious_hypatia"}]
+
+d. GET /containers
+ fb434121fc77
+
+e. Their names, there isn't any more different.
+
+f. docker run -t -i ubuntu:14.04 /bin/bash
+
+g. 8082
+
+h.
+  
+i.
+
+
