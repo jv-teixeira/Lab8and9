@@ -60,7 +60,7 @@ def images_index():
     output = docker('images')
     resp = json.dumps(docker_images_to_array(output))
     return Response(response=resp, mimetype="application/json")
-
+ 
 @app.route('/containers/<id>', methods=['GET'])
 def containers_show(id):
     """
@@ -79,8 +79,8 @@ def containers_log(id):
     Dump specific container logs
     curl -s -X GET -H 'Accept: application/json' http://localhost:8080/logs | python -mjson.tool
     """
-    docker ('logs', id)
-    resp = json.dumps(docker_logs_to_object(id, output))
+    output =  docker ('logs', id)
+    resp = json.dumps(docker_logs_to_object(output, id))
     return Response(response=resp, mimetype="application/json")
 
 
@@ -122,8 +122,12 @@ def images_remove_all():
     Force remove all images - dangrous!
 
     """
-    docker ('rmi', '-q')
-#    resp = '{"id": "%s"}' % id
+    llContainers = docker_ps_to_array(docker('ps', '-a'))
+    output = {}
+    for container in allContainers:
+        docker ('rm', '-f', container['id'])
+        output[container['id']]="deleted"
+    resp = json.dumps(output)
     return Response(response=resp, mimetype="application/json")
 
 
@@ -140,6 +144,11 @@ def containers_create():
     body = request.get_json(force=True)
     image = body['image']
     args = ('run', '-d')
+    if 'publish' in body:
+        pPorts = body['publish']
+        id = docker(*(args + ('-p', pPorts) +(image,)))[0:12]
+    else:
+        id = docker(*(args + (image,)))[0:12]
     id = docker(*(args + (image,)))[0:12]
     return Response(response='{"id": "%s"}' % id, mimetype="application/json")
 
@@ -152,9 +161,28 @@ def images_create():
     curl -H 'Accept: application/json' -F file=@Dockerfile http://localhost:8080/images
 
     """
+    curPath = './Dockerfiles'
+    directories = [ d for d in listdir(curPath) if isdir(join(curPath,d)) ]
+
+    # Find the Highest number in folder Names and create a new folder
+    # This can be optimized if added a global counter
+    highestNumber = -1
+    for d in directories:
+        number = int(d[2:])
+        if number > highestNumber:
+            highestNumber = number
+    highestNumber += 1
+    newDirectory = os.path.join(curPath,'d_' + str(highestNumber))
+    os.makedirs(newDirectory)
+
     dockerfile = request.files['file']
-    
-    resp = ''
+    filename = ''
+    if dockerfile:
+        filename = secure_filename(dockerfile.filename)
+        dockerfile.save(os.path.join(newDirectory, filename))
+
+    output = docker('build', '--rm=true', newDirectory)
+    resp = output
     return Response(response=resp, mimetype="application/json")
 
 
